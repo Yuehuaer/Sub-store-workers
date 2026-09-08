@@ -7,7 +7,7 @@
     "build": "node esbuild.js",
     "test": "mocha \"src/test/**/*.spec.js\" --require @babel/register --recursive",
     "dev": "wrangler dev",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "npm run build && wrangler deploy -c wrangler.workers.toml",
     "deploy:pages": "npm run build && node -e \"const fs=require('fs');fs.mkdirSync('pages-dist',{recursive:true});fs.copyFileSync('dist/worker.js','pages-dist/_worker.js');fs.copyFileSync('dist/quickjs.wasm','pages-dist/quickjs.wasm')\" && wrangler pages deploy pages-dist --project-name sub-store --branch main",
     "rotate-secret": "powershell -ExecutionPolicy Bypass -File scripts/rotate-secret.ps1",
     "rotate-secret:sh": "bash scripts/rotate-secret.sh",

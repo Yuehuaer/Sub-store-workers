@@ -1,0 +1,19 @@
+# Workers 专用配置（因主 wrangler.toml 已改为 Pages 配置，Workers 部署通过 -c 指定本文件）
+name = "sub-store-workers"
+main = "dist/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespace bindings
+[[kv_namespaces]]
+binding = "SUB_STORE_DATA"
+id = "e08188be3e21409791a8ad7564a48189"
+
+# 定时同步（每天 23:55 执行）
+[triggers]
+crons = ["55 15 * * *"]
+
+[vars]
+SCRIPT_ENGINE = "quickjs"
+SUB_STORE_BACKEND_CUSTOM_NAME = "Workers"
+SUB_STORE_BACKEND_CUSTOM_ICON = "https://cdn.jsdelivr.net/gh/Yu9191/sub-store-workers@main/png/cloudflare.png"
